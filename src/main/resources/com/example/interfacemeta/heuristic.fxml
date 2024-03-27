@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="234.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfacemeta.heuristicController">
+   <children>
+      <ComboBox fx:id="comboBoxH" layoutX="88.0" layoutY="42.0" prefWidth="150.0" promptText="choose method" />
+      <Button fx:id="nextButton" layoutX="88.0" layoutY="156.0" mnemonicParsing="false" onAction="#SwitchToResult" prefHeight="35.0" prefWidth="150.0" text="Run" />
+      <Button fx:id="fileButtonH" layoutX="108.0" layoutY="104.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Choose csv file" />
+   </children>
+</AnchorPane>
