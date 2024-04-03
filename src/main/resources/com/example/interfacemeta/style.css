@@ -1,3 +1,17 @@
 .centered {
         -fx-alignement : "center";
 }
+
+
+.vBox {
+    -fx-border-color : black;
+}
+
+.vBox .label {
+      -fx-border-style: hidden hidden solid hidden;
+          -fx-border-width: 1;
+          -fx-border-color: black;
+
+        -fx-padding: 5px 0;
+
+}

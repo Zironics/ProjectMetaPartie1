@@ -14,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +95,27 @@ public class heuristicController implements Initializable {
              MKSP mksp = csv.getMkspFromCSV("./Examples/"+file);
              PerformanceInfo perf = Measure(mksp,2);
 
-             System.out.println(perf.toString());
+             FXMLLoader loader = new FXMLLoader(
+                     getClass().getResource(
+                             "scene2.fxml"
+                     )
+             );
+
+             Stage stage = new Stage(StageStyle.DECORATED);
+
+             Scene scene = new Scene(loader.load());
+             stage.setScene(
+                     scene
+             );
+
+             String css = this.getClass().getResource("style.css").toExternalForm();
+
+             scene.getStylesheets().add(css);
+
+             Scene2Controller controller = loader.getController();
+
+             controller.initData(mksp,perf,"A_star");
+             stage.show();
 
          }
     }
@@ -121,6 +142,8 @@ public class heuristicController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("exact.fxml"));
         Stage stage = (Stage) (nextButton).getScene().getWindow();
         Scene scene = new Scene(root);
+        String css = this.getClass().getResource("style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
     }

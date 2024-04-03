@@ -15,6 +15,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -94,16 +96,38 @@ public class Scene1Controller implements Initializable {
     }
 
     public void SwitchToResult(ActionEvent e) throws IOException {
+
+
         if(file != null) {
 
             csv_handler csv = new csv_handler();
             MKSP mksp = csv.getMkspFromCSV("./Examples/"+file);
             PerformanceInfo perf;
-            if(radioDFS.isSelected()){System.out.println("DFS : "); perf  = Measure(mksp,0);}
+            String method = "BFS";
+            if(radioDFS.isSelected()){method = "DFS"; perf  = Measure(mksp,0);}
             else perf = Measure(mksp,1);
 
-            System.out.println(perf.toString());
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "scene2.fxml"
+                    )
+            );
 
+            Stage stage = new Stage(StageStyle.DECORATED);
+
+            Scene scene = new Scene(loader.load());
+            stage.setScene(
+                    scene
+            );
+
+            String css = this.getClass().getResource("style.css").toExternalForm();
+
+            scene.getStylesheets().add(css);
+
+            Scene2Controller controller = loader.getController();
+
+            controller.initData(mksp,perf,method);
+            stage.show();
         }
     }
 
@@ -131,6 +155,8 @@ public class Scene1Controller implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("heuristic.fxml"));
         Stage stage = (Stage) (nextButton).getScene().getWindow();
         Scene scene = new Scene(root);
+        String css = this.getClass().getResource("style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
     }

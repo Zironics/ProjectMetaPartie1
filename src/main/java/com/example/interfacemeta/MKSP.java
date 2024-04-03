@@ -60,7 +60,10 @@ public class MKSP {
 
 		for(int x:solution) {
 			if (x==-1)
+			{
+				obj++;
 				continue;
+			}
 
 			somme_value += getObjectValue(obj);
 			obj++;

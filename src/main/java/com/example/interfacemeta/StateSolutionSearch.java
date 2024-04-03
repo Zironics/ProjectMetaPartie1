@@ -20,6 +20,7 @@ public class StateSolutionSearch extends AbstractSolutionModel{
     }
 
     public int evaluate(ArrayList<Integer> solution) {
+
         int somme = 0;
         for(int i = 0; i < solution.size(); i++) {
             if(solution.get(i) != -1) somme += mksp.getObjectValue(i);
@@ -49,7 +50,7 @@ public class StateSolutionSearch extends AbstractSolutionModel{
                 best.clear();
                 for(Integer x : n) best.add(x);
 
-                //System.out.println("new best : " + best + " evaluation : " + ev);
+               // System.out.println("new best : " + best + " evaluation : " + ev);
 
             }
 
