@@ -20,6 +20,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static com.example.interfacemeta.heuristicController.Measure;
+
 
 public class Scene2Controller implements Initializable {
 
@@ -43,6 +45,12 @@ public class Scene2Controller implements Initializable {
     @FXML
     private Label tempsLabel;
 
+    @FXML
+    private Button runbtn;
+
+    @FXML
+    private Label nodeLabel;
+
     public void SwitchToScene1(ActionEvent e) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("exact.fxml"));
@@ -59,7 +67,10 @@ public class Scene2Controller implements Initializable {
 
         vBox1.setAlignment(Pos.TOP_CENTER);
         vBox1.setPrefSize(164, 364);
-        Label sacL = new Label("SAC " + i);
+
+        int sac_weight = mksp.getSackWeight(i);
+
+        Label sacL = new Label("SAC " + i + " (" + sac_weight + ")");
         sacL.setMaxWidth(Double.MAX_VALUE);
         sacL.setAlignment(Pos.CENTER);
         vBox1.getChildren().addAll(
@@ -83,7 +94,7 @@ public class Scene2Controller implements Initializable {
             }
         }
 
-        int sac_weight = mksp.getSackWeight(i);
+
 
         double percentage_sac = ((double) somme_weight / sac_weight) * 100;
 
@@ -104,6 +115,18 @@ public class Scene2Controller implements Initializable {
         }
     }
 
+    public void ReRun(ActionEvent e) {
+        int opt;
+        if(method == "A_star") opt = 2;
+        else if (method == "DFS") opt = 0;
+        else opt = 1;
+
+        this.perf = Measure(mksp,opt);
+        hBox.getChildren().clear();
+        populateHbox();
+        setContent();
+    }
+
     public void setContent() {
 
         double eval = perf.getEvaluation();
@@ -111,6 +134,8 @@ public class Scene2Controller implements Initializable {
         algoLabel.setText("Algorithme choisie : " + method);
         valeurLabel.setText("valeur totale : " + eval);
         tempsLabel.setText("Temps d'execution : " + String.format("%,d", time));
+        nodeLabel.setText("noeud develope : " + perf.getNodes());
+
     }
 
 
@@ -131,6 +156,6 @@ public class Scene2Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        runbtn.setOnAction(this::ReRun);
     }
 }

@@ -46,9 +46,8 @@ public class heuristicController implements Initializable {
 
                 ArrayList<Integer> sol = solution.DFS();
 
-                perf.setSolution(sol);
-
                 long endTime = System.nanoTime();
+                perf.setSolution(sol);
                 perf.setTime(endTime  - startTime);
                 perf.setNodeNumber(solution.getDevelopedNodes());
                 perf.setEvaluation(mksp.getPerformance(sol));
@@ -60,9 +59,9 @@ public class heuristicController implements Initializable {
                 long startTime = System.nanoTime();
 
                 ArrayList<Integer> sol = solution.BFS();
-                perf.setSolution(sol);
 
                 long endTime = System.nanoTime();
+                perf.setSolution(sol);
                 perf.setTime(endTime  - startTime);
                 perf.setNodeNumber(solution.getDevelopedNodes());
                 perf.setEvaluation(mksp.getPerformance(sol));
@@ -74,9 +73,10 @@ public class heuristicController implements Initializable {
                 long startTime = System.nanoTime();
 
                 ArrayList<Integer> sol = solution.AStar();
-                perf.setSolution(sol);
+
 
                 long endTime = System.nanoTime();
+                perf.setSolution(sol);
                 perf.setTime(endTime  - startTime);
                 perf.setNodeNumber(solution.getDevelopedNodes());
                 perf.setEvaluation(mksp.getPerformance(sol));
