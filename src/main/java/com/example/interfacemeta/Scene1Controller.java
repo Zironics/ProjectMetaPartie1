@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -138,7 +139,7 @@ public class Scene1Controller implements Initializable {
         Stage stage = (Stage) (nextButton).getScene().getWindow();
 
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV file","*.csv"));
-        File initialDirectory = new File("C:/Users/Rafik/IdeaProjects/login/Examples"); // Specify your desired initial directory here
+        File initialDirectory = new File("./Examples/"); // Specify your desired initial directory here
         fileChooser.setInitialDirectory(initialDirectory);
 
         File selectedFile = fileChooser.showOpenDialog(stage);
