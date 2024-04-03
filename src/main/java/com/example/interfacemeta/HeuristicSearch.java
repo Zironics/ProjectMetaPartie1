@@ -149,8 +149,10 @@ public class HeuristicSearch extends AbstractSolutionModel {
         int obj = 0;
 
         for(int x:solution) {
-            if (x==-1)
+            if (x==-1) {
+                obj++;
                 continue;
+            }
 
             if(!dict.containsKey(x))
                 dict.put(x,mksp.getObjectWeight(obj));
